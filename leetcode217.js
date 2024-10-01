@@ -18,22 +18,33 @@
 //     }
 //     return false;
 // }
-// nums = [1,2,3,1];
-// console.log(containsDuplicate(nums)); // Output: true
-// nums = [1,2,3,4];
-// console.log(containsDuplicate(nums)); // Output: false
-// nums = [1,1,1,3,3,4,3,2,4,2];
-// console.log(containsDuplicate(nums)); // Output: true
 
 // Approach2: Using Sorting
 // Time complexity: O(nlogn)
 // Space complexity: O(n)
 
+// var containsDuplicate = function(nums) {
+//     nums.sort((a,b) => a-b);
+//     for (let i = 0; i < nums.length-1; i++) {
+//         if (nums[i] === nums[i+1]) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+// Approach3: Using Hash Map
+// Time complexity: O(n)
+// Space complexity: O(n)
+
 var containsDuplicate = function(nums) {
-    nums.sort((a,b) => a-b);
-    for (let i = 0; i < nums.length-1; i++) {
-        if (nums[i] === nums[i+1]) {
+    let map = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (map[nums[i]]){
             return true;
+        }
+        else {
+            map[nums[i]] = 1;
         }
     }
     return false;
@@ -41,7 +52,7 @@ var containsDuplicate = function(nums) {
 
 nums = [1,2,3,1];
 console.log(containsDuplicate(nums)); // Output: true
-nums = [1,2,3,4];
-console.log(containsDuplicate(nums)); // Output: false
 nums = [1,1,1,3,3,4,3,2,4,2];
 console.log(containsDuplicate(nums)); // Output: true
+nums = [1,2,3,4];
+console.log(containsDuplicate(nums)); // Output: false
