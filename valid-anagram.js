@@ -4,15 +4,44 @@ class Solution {
      * @param {string} t
      * @return {boolean}
      */
+    // Approach 1: Using Sorting
+    // Time complexity: O(nlogn)
+    // Space complexity: O(n)
+
+    // isAnagram(s, t) {
+    //     if(s.length !== t.length){
+    //         return false;
+    //     }
+
+    //     let sSort = s.split("").sort().join("");
+    //     let tSort = t.split("").sort().join("");
+
+    //     return sSort === tSort;
+    // }
+
+    // Approach 2: Using a Hash Map
+    // Time complexity: O(n)
+    // Space complexity: O(n)
+
     isAnagram(s, t) {
-        if(s.length !== t.length){
+        if (s.length !== t.length) {
             return false;
         }
 
-        let sSort = s.split("").sort().join("");
-        let tSort = t.split("").sort().join("");
+        const charCount = {};
 
-        return sSort === tSort;
+        for (let char of s) {
+            charCount[char] = (charCount[char] || 0) + 1;
+        }
+
+        for (let char of t) {
+            if (!charCount[char]) {
+                return false;
+            }
+            charCount[char] -= 1;
+        }
+
+        return true;
     }
 }
 
